@@ -3,7 +3,7 @@
 with validation as (
 
     select
-        {{ column_name }} as even_field
+        {{ column_name }} as even_field2
 
     from {{ model }}
 
@@ -12,11 +12,11 @@ with validation as (
 validation_errors as (
 
     select
-        even_field
+        even_field2
 
     from validation
     -- if this is true, then even_field is actually odd!
-    where (even_field % 2) = 1
+    where (even_field2 % 2) = 1
 
 )
 

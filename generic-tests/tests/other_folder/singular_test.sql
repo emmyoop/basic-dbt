@@ -1,1 +1,1 @@
-select id from {{ ref('my_final_dbt_model') }} where id < 0
+select id from {{ ref('my_final_dbt_model') }} where id < 1
