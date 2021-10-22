@@ -7,7 +7,11 @@
     Try changing "table" to "view" below
 */
 
-{{ config(materialized='table') }}
+{{ config(
+    materialized='table',
+    schema= env_var('DBT_ENV_SECRET_SCHEMA')
+
+) }}
 
 with source_data as (
 
