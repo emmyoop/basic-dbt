@@ -11,11 +11,9 @@ def main():
 
     payload = {
             "jsonrpc": "2.0",
-            "method": "cli_args",
-            "id": "80949",
-            "params": {
-                "cli": "run",
-          }
+            "method": "deps",
+            "id": "71109",
+            
     }
     response = requests.post(url, json=payload).json()
 
