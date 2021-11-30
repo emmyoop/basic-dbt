@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: female_list_view
+    description: 'List of females'
+    columns:
+      - name: id
+      - name: first_name
+      - name: last_name
+      - name: email
+      - name: gender
+      - name: ip_address
+  - name: male_list_view
+    description: 'List of males'
+    columns:
+      - name: id
+      - name: first_name
+      - name: last_name
+      - name: email
+
+
