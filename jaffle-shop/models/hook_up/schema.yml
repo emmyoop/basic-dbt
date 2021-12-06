@@ -18,4 +18,10 @@ models:
       - name: last_name
       - name: email
 
+sources:
+  - name: source_jaffle_shop
 
+    loaded_at_field: "date_added::timestamp"
+
+    tables:
+      - name: source_people # this will use the freshness defined above
