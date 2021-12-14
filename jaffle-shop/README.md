@@ -2,25 +2,12 @@ Welcome to your new dbt project!
 
 ### Using the starter project
 
-Set `profiles.yml` in ~/.dbt
-```
-jaffle_shop:
-  target: dev
-  outputs:
-    dev:
-      type: postgres
-      host: localhost
-      user: testing
-      password: password
-      port: 5432
-      dbname: jaffle_shop
-      schema: dbt_testing
-      threads: 4
-```      
+set an environment variable to point to the committed profile.  The default is ~/.dbt/profile.yml but this way the 
+file can be committed.  It uses the same docker container as the `dbt-core` test suite.
 
-# set up local postgres docker container 
-docker-compose up -d database
-PGHOST=localhost PGUSER=root PGPASSWORD=password PGDATABASE=postgres 
+```
+$ export DBT_PROFILES_DIR=~/Projects/test_projects/basic-dbt
+```
 
 
 ### Resources:

@@ -1,0 +1,12 @@
+jaffle_shop:
+  outputs:
+    dev:
+      dbname: dbt
+      host: localhost
+      password: password
+      port: 5432
+      schema: dbt_testing
+      threads: 4
+      type: postgres
+      user: root
+  target: dev
