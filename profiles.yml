@@ -1,4 +1,4 @@
-jaffle_shop:
+basic_dbt:
   outputs:
     dev:
       dbname: dbt
