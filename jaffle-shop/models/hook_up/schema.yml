@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: clean_table
+    description: "Table with full names"
+    columns:
+      - name: full_name
+        description: "This is the concatenated first and last names."
+        tests:
+          - not_null
+  - name: even_id_table
+    description: "Table of even id values only"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - not_null
+  - name: male_list_view
+    description: "View of male customers"
+    columns:
+      - name: id
+        description: "The primary key for this view"
+        tests:
+          - not_null
+      - name: gender
+        description: "gender of customer"
+        tests:
+          - accepted_values:
+              values: ['Male']
