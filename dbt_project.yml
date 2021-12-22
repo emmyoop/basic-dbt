@@ -6,6 +6,9 @@ name: 'basic_dbt'
 version: '1.0.0'
 config-version: 2
 
+vars:
+  bg_schemas: ['bg_test_replication']
+
 # This setting configures which "profile" dbt uses for this project.
 profile: 'basic_dbt'
 
