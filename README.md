@@ -2,26 +2,17 @@ Welcome to your new dbt project!
 
 ### Using the starter project
 
-Set `profiles.yml` in ~/.dbt
-```
-jaffle_shop:
-  target: dev
-  outputs:
-    dev:
-      type: postgres
-      host: localhost
-      user: testing
-      password: password
-      port: 5432
-      dbname: jaffle_shop
-      schema: dbt_testing
-      threads: 4
-```      
+This uses the same postgres containter as the `dbt-core` testing environment.  See setup in the `dbt-core` `CONTRIBUTING` docs.
 
-# set up local postgres docker container 
-docker-compose up -d database
-PGHOST=localhost PGUSER=root PGPASSWORD=password PGDATABASE=postgres 
+You'll need to set an env variable so that your project looks at this committed profiles file.  
 
+`$ export DBT_PROFILES_DIR=~/Projects/test_projects/basic-dbt`
+
+Note that this will change where all your dbt projects looks for profiles.  Alternatively you could point each run to the local directory
+
+`$ dbt run --profiles-dir ~/Projects/test_projects/basic-dbt`
+
+If using this method, the --profiles-dir option needs to be provided every time you run a dbt command.
 
 ### Resources:
 - Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
