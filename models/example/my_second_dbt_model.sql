@@ -1,9 +1,5 @@
 
-{{ config(
-    materialized='table',
-    schema="bg_other_schema"
-    )     
-}}
+-- Use the `ref` function to select from other models
 
 select *
 from {{ ref('my_first_dbt_model') }}
