@@ -1,0 +1,7 @@
+version: 2
+
+macros:
+  - name: third_macro
+    description: This is my description
+    docs:
+      show: true
