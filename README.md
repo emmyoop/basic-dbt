@@ -1,12 +1,22 @@
 Welcome to your new dbt project!
 
-### Using the starter project
+### Using this project with postgres
 
-set an environment variable to point to the committed profile.  The default is ~/.dbt/profile.yml but this way the 
-file can be committed.  It uses the same docker container as the `dbt-core` test suite.
+For working in postgres running in a Docker container on your machine, spun up by `make setup-db` in the `dbt-core` repo, add the following to your profile:
 
-```
-$ export DBT_PROFILES_DIR=~/Projects/test_projects/basic-dbt
+```yaml
+basic_dbt:
+  outputs:
+    dev:
+      dbname: dbt
+      host: localhost
+      password: password
+      port: 5432
+      schema: dbt_testing
+      threads: 4
+      type: postgres
+      user: root
+  target: dev
 ```
 
 
