@@ -5,3 +5,4 @@ dbt_packages/
 logs/
 env/
 .user.yml
+test.env
