@@ -27,3 +27,23 @@ models:
         tests:
           - accepted_values:
               values: ['Male']
+
+metrics:
+  - name: cool_metric
+    label: Informative metric label
+    model: ref('clean_table')
+    description: "Something awesome"
+
+    type: count
+    sql: id
+
+    timestamp: signup_date
+    time_grains: [day, week, month]
+
+    dimensions:
+      - gender
+    
+    filters:
+      - field: id
+        operator: '>='
+        value: '100'
