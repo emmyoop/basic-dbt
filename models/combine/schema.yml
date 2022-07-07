@@ -1,5 +1,14 @@
 version: 2
 
+
+sources:
+  - name: jaffle_shop
+    database: dbt_emily_db
+    schema: dbt_testing_other_schema
+    tables:
+      - name: orders
+
+
 models:
   - name: clean_table
     description: "Table with full names"
