@@ -1,0 +1,10 @@
+version: 2
+
+metrics:
+  - name: metric_y
+    model: ref('model_x')
+    label: Count
+    timestamp: updated_at
+    time_grains: [day, week, month]
+    type: count
+    sql: id

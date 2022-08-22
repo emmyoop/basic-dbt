@@ -1,0 +1,1 @@
+select * from {{ metrics.calculate(metric('metric_y'), grain='month') }}
