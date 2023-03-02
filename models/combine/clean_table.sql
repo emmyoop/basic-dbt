@@ -1,3 +1,10 @@
+{{
+    config(
+        tags=['Andrew'],
+        docs={'node_color': 'green'}
+    )
+}}
+
 select first_name || ' ' || last_name  as full_name,
         email,
         gender,

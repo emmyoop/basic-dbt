@@ -1,0 +1,35 @@
+version: 2
+
+groups:
+  - name: nested_group
+    owner: 
+      name: Emily
+      email: me@aol.co
+      slack: talk-jerco-memes
+      github: jtcohen6
+      whatever: you want
+
+models:
+  - name: top-model
+    config: 
+      group: nested_group
+
+  - name: top-model-private
+    access: private
+    config: 
+      group: nested_group
+
+  - name: top-model-public
+    access: public
+    config: 
+      group: nested_group
+
+  - name: second-model-private
+    access: private
+    config: 
+      group: nested_group
+
+  - name: second-model-public
+    access: public
+    config: 
+      group: nested_group

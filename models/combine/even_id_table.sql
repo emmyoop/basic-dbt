@@ -2,4 +2,4 @@
     materialized="table"
 ) }}
 
-select * from {{ ref('raw_people_list') }} where (id % 2) = 0
+select * from {{ source('my_source', 'raw_people_list') }} where (id % 2) = 0

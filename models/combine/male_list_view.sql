@@ -2,4 +2,4 @@
     materialized="view"
 ) }}
 
-select * from {{ ref('raw_people_list') }} where gender = 'Male'
+select * from {{ source('my_source', 'raw_people_list') }} where gender = 'Male'

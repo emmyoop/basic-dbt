@@ -1,9 +1,17 @@
 version: 2
 
-
+sources:
+  - name: my_source
+    database: dbt
+    schema: dbt_testing
+    tables:
+      - name: raw_people_list
 
 models:
   - name: clean_table
+    access: private
+    config: 
+      group: some_group  # explicit opt-in
     description: "Table with full names"
     columns:
       - name: full_name
@@ -11,6 +19,9 @@ models:
         tests:
           - not_null
   - name: even_id_table
+    access: public
+    config: 
+      group: some_group  # explicit opt-in
     description: "Table of even id values only"
     columns:
       - name: id
@@ -18,6 +29,9 @@ models:
         tests:
           - not_null
   - name: male_list_view
+    access: private
+    config: 
+      group: some_group  # explicit opt-in
     description: "View of male customers"
     columns:
       - name: id
