@@ -9,7 +9,7 @@ sources:
 
 models:
   - name: clean_table
-    access: private
+    access: public
     config: 
       group: some_group  # explicit opt-in
     description: "Table with full names"
