@@ -2,14 +2,18 @@ version: 2
 models:
   - name: contracted_model
     config:
-      contract: true
+      contract: 
+        enforced: true
     columns:
       - name: id
         quote: true
         data_type: integer
         description: hello
-        constraints: ['not null','primary key']
-        constraints_check: (id > 0)
+        constraints:
+          - type: not_null
+          - type: primary_key
+          - type: check
+            expression: (id > 0)
         tests:
           - unique
       - name: color_renamed
@@ -25,8 +29,8 @@ models:
         quote: true
         data_type: integer
         description: hello
-        constraints: ['not null','primary key']
-        constraints_check: (id > 0)
+        # constraints: ['not null','primary key']
+        # constraints_check: (id > 0)
         tests:
           - unique
       - name: color_view

@@ -50,8 +50,8 @@ metrics:
     model: ref('clean_table')
     description: "Something awesome"
 
-    type: count
-    sql: id
+    calculation_method: count
+    expression: id
 
     timestamp: signup_date
     time_grains: [day, week, month]
