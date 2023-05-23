@@ -1,7 +1,33 @@
+version: 2
+
 models:
   - name: nested_fields
     config:
-      contract: {enforced: true}
+    #   contract: {enforced: true}
+      materialized: table
+    columns:
+      - name: a
+        data_type: string
+      - name: b.id
+        data_type: integer
+        constraints:
+          - type: not_null
+      - name: b.name
+        data_type: string
+
+  - name: nested_fields_alt
+    config:
+    #   contract: {enforced: true}
+      materialized: table
+    columns:
+      - name: a
+        data_type: string
+      - name: b
+        data_type: struct<id integer, name string>
+
+  - name: double_nested_fields
+    config:
+      # contract: {enforced: true}
       materialized: table
     columns:
       - name: a
