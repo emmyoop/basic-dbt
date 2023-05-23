@@ -1,0 +1,18 @@
+models:
+  - name: nested_fields
+    config:
+      contract: {enforced: true}
+      materialized: table
+    columns:
+      - name: a
+        data_type: string
+      - name: b.id
+        data_type: integer
+        constraints:
+          - type: not_null
+      - name: b.name
+        data_type: string
+      - name: b.double_nested.id
+        data_type: integer
+      - name: b.double_nested.another
+        data_type: string

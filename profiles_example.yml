@@ -1,12 +1,13 @@
-basic_dbt:
+bigquery_dbt:
   outputs:
     dev:
-      dbname: dbt
-      host: localhost
-      password: password
-      port: 5432
-      schema: dbt_testing
-      threads: 4
-      type: postgres
-      user: root
+      type: bigquery
+      method: service-account
+      keyfile: /Users/emily/.dbt/bq_key.json   -> this is where you put the json key
+      project: dbt-test-env
+      dataset: dbt-emily
+      threads: 2
+      dataproc_region: us-central1
+      dataproc_cluster_name: dbt-test-1
+      gcs_bucket: dbt-ci
   target: dev

@@ -6,3 +6,4 @@ logs/
 env*
 .user.yml
 test.env
+bq_key.json
