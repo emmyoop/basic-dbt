@@ -1,0 +1,1 @@
+SELECT to_date('02/20/2023', 'mm/dd/yyyy') as date_day
