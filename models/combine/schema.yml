@@ -44,22 +44,22 @@ models:
           - accepted_values:
               values: ['Male']
 
-metrics:
-  - name: cool_metric
-    label: Informative metric label
-    model: ref('clean_table')
-    description: "Something awesome"
+# metrics:
+#   - name: cool_metric
+#     label: Informative metric label
+#     model: ref('clean_table')
+#     description: "Something awesome"
 
-    calculation_method: count
-    expression: id
+#     calculation_method: count
+#     expression: id
 
-    timestamp: signup_date
-    time_grains: [day, week, month]
+#     timestamp: signup_date
+#     time_grains: [day, week, month]
 
-    dimensions:
-      - gender
+#     dimensions:
+#       - gender
     
-    filters:
-      - field: id
-        operator: '>='
-        value: '100'
+#     filters:
+#       - field: id
+#         operator: '>='
+#         value: '100'
