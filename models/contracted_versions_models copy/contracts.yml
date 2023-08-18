@@ -1,0 +1,67 @@
+version: 2
+models:
+  - name: contracted_model_versioned
+    latest_verison: 1
+    config:
+      materialized: table
+      contract: 
+        enforced: true
+    constraints:
+      - type: check
+        columns: [id]
+        expression: (id > 0)
+    columns:
+      - name: id
+        quote: true
+        data_type: integer
+        description: hello
+        constraints:
+          - type: not_null
+          - type: primary_key
+        tests:
+          - unique
+      - name: color
+        data_type: text
+      - name: date_day
+        data_type: date
+    versions:
+      - v: 1
+      # - v: 2
+      #   # Removed a column -- this is the breaking change!
+      #   columns:
+      #     # This means: use the 'columns' list from above, but exclude country_name
+      #     - include: all
+      #       exclude: [country_name]
+
+  - name: contracted_view_versioned
+    latest_verison: 1
+    config:
+      materialized: view
+      contract: 
+        enabled: true
+    constraints:
+      - type: check
+        columns: [id]
+        expression: (id > 0)
+    columns:
+      - name: id_view
+        quote: true
+        data_type: integer
+        description: hello
+        constraints:
+          - type: not_null
+          - type: primary_key
+        tests:
+          - unique
+      - name: color_view
+        data_type: text
+      - name: date_view
+        data_type: date
+    versions:
+      - v: 1
+      # - v: 2
+      #   # Removed a column -- this is the breaking change!
+      #   columns:
+      #     # This means: use the 'columns' list from above, but exclude country_name
+      #     - include: all
+      #       exclude: [country_name]

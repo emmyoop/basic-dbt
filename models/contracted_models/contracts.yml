@@ -2,35 +2,45 @@ version: 2
 models:
   - name: contracted_model
     config:
-      contract: 
-        enforced: true
+      materialized: view
+      # contract: 
+      #   enforced: true
+    # constraints:
+    #   - type: check
+    #     columns: [id]
+    #     expression: (id > 0)
     columns:
       - name: id
+        quote: true
+        data_type: integer
+        description: hello
+        # constraints:
+        #   - type: not_null
+        #   - type: primary_key
+        tests:
+          - unique
+      - name: color_renamed
+        data_type: text
+      - name: date_day_renamed
+        data_type: date
+
+  - name: contracted_view
+    config:
+      materialized: view
+      contract: 
+        enabled: true
+    constraints:
+      - type: check
+        columns: [id]
+        expression: (id > 0)
+    columns:
+      - name: id_view
         quote: true
         data_type: integer
         description: hello
         constraints:
           - type: not_null
           - type: primary_key
-          - type: check
-            expression: (id > 0)
-        tests:
-          - unique
-      - name: color_renamed
-        data_type: text
-      - name: date_day
-        data_type: date
-
-  - name: contracted_view
-    # config:
-    #   contract: true
-    columns:
-      - name: id_view
-        quote: true
-        data_type: integer
-        description: hello
-        # constraints: ['not null','primary key']
-        # constraints_check: (id > 0)
         tests:
           - unique
       - name: color_view
