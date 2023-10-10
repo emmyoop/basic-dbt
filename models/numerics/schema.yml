@@ -1,0 +1,11 @@
+models:
+  - name: test_numerics
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: decimal_col
+        data_type: numeric
+      - name: int_col
+        data_type: int
