@@ -1,0 +1,39 @@
+unit_tests:
+  - name: test_csv_inline
+    model: clean_table
+    description: "inline csv test"
+    given:
+      - input: ref('even_id_table')
+        format: csv
+        rows: |
+          id,first_name,last_name,email,gender,ip_address
+          2,First,Last,email@me.com,F,5
+    expect:
+      format: csv
+      rows: |
+        full_name,email,gender,ip_address
+        First Last,email@me.com,F,5
+
+  - name: test_csv_file
+    model: clean_table
+    description: "file csv test"
+    given:
+      - input: ref('even_id_table')
+        format: csv
+        fixture: even_id_fixture
+    expect:
+      format: csv
+      fixture: clean_table_fixture
+  
+  - name: test_mixed_csv
+    model: clean_table
+    description: "file csv test"
+    given:
+      - input: ref('even_id_table')
+        format: csv
+        fixture: even_id_fixture
+    expect:
+      format: csv
+      rows: |
+        full_name,email,gender,ip_address
+        First Last,email@me.com,F,5
