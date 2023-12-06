@@ -5,7 +5,8 @@
     )
 }}
 
-select first_name || ' ' || last_name  as full_name,
+select first_name,
+        last_name,
         email,
         gender,
         ip_address

@@ -1,0 +1,87 @@
+version: 2
+
+sources:
+  - name: my_source
+    database: dbt
+    schema: dbt_testing
+    tables:
+      - name: raw_people_list
+
+models:
+  - name: clean_table
+    access: public
+    config: 
+      group: some_group  # explicit opt-in
+    description: "Table with full names"
+    columns:
+      - name: first_name
+        tests:
+          - not_null
+      - name: last_name
+        tests:
+          - not_null
+
+  - name: even_id_table
+    latest_version: 1
+    access: public
+    config: 
+      group: some_group  # explicit opt-in
+      contract: 
+        enforced: true
+    description: "Table of even id values only"
+    columns:
+      - name: id
+        data_type: integer
+        tests:
+          - not_null
+      - name: first_name
+        data_type: string
+        tests:
+          - not_null
+      - name: last_name
+        data_type: string
+        tests:
+          - not_null
+      - name: email 
+        data_type: string
+        tests:
+          - not_null
+      - name: gender
+        data_type: string
+        tests:
+          - not_null
+      - name: ip_address
+        data_type: string
+        tests:
+          - not_null
+    versions:
+      - v: 1
+      - v: 2
+        # Removed a column -- this is the breaking change!
+        columns:
+          # This means: use the 'columns' list from above, but exclude ip_address
+          - include: all
+            exclude: [ip_address]
+      - v: 3
+        # combine two columns into 1
+        columns:
+          - include: all
+            exclude: [first_name, last_name, ip_address]
+          - name: full_name
+            data_type: string
+
+  - name: male_list_view
+    access: private
+    config: 
+      group: some_group  # explicit opt-in
+    description: "View of male customers"
+    columns:
+      - name: id
+        description: "The primary key for this view"
+        tests:
+          - not_null
+      - name: gender
+        description: "gender of customer"
+        tests:
+          - accepted_values:
+              values: ['Male']
