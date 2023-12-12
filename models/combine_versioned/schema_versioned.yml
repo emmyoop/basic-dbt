@@ -15,10 +15,10 @@ models:
     description: "Table with full names"
     columns:
       - name: first_name
-        tests:
+        data_tests:
           - not_null
       - name: last_name
-        tests:
+        data_tests:
           - not_null
 
   - name: even_id_table
@@ -32,27 +32,27 @@ models:
     columns:
       - name: id
         data_type: integer
-        tests:
+        data_tests:
           - not_null
       - name: first_name
         data_type: string
-        tests:
+        data_tests:
           - not_null
       - name: last_name
         data_type: string
-        tests:
+        data_tests:
           - not_null
       - name: email 
         data_type: string
-        tests:
+        data_tests:
           - not_null
       - name: gender
         data_type: string
-        tests:
+        data_tests:
           - not_null
       - name: ip_address
         data_type: string
-        tests:
+        data_tests:
           - not_null
     versions:
       - v: 1
@@ -60,13 +60,17 @@ models:
         # Removed a column -- this is the breaking change!
         columns:
           # This means: use the 'columns' list from above, but exclude ip_address
-          - include: all
-            exclude: [ip_address]
+          - include: "all"
+            exclude:
+            - ip_address
       - v: 3
         # combine two columns into 1
         columns:
           - include: all
-            exclude: [first_name, last_name, ip_address]
+            exclude:
+            - first_name
+            - last_name
+            - ip_address
           - name: full_name
             data_type: string
 
@@ -78,10 +82,10 @@ models:
     columns:
       - name: id
         description: "The primary key for this view"
-        tests:
+        data_tests:
           - not_null
       - name: gender
         description: "gender of customer"
-        tests:
+        data_tests:
           - accepted_values:
               values: ['Male']

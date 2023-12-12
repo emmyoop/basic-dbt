@@ -1,39 +1,80 @@
-# unit_tests:
-#   - name: test_csv_inline
-#     model: clean_table
-#     description: "inline csv test"
-#     given:
-#       - input: ref('even_id_table')
-#         format: csv
-#         rows: |
-#           id,first_name,last_name,email,gender,ip_address
-#           2,First,Last,email@me.com,F,5
-#     expect:
-#       format: csv
-#       rows: |
-#         full_name,email,gender,ip_address
-#         First Last,email@me.com,F,5
+unit_tests:
+  # run unit tests for all versioned models
+  # - name: test_csv_inline
+  #   model: clean_table
+  #   description: "inline csv test"
+  #   given:
+  #     - input: ref('even_id_table', v='1')
+  #       format: csv
+  #       rows: |
+  #         id,email,gender
+  #         2,email@me.com,F
+  #   expect:
+  #     format: csv
+  #     rows: |
+  #       email,gender
+  #       email@me.com,F
 
-#   - name: test_csv_file
-#     model: clean_table
-#     description: "file csv test"
-#     given:
-#       - input: ref('even_id_table')
-#         format: csv
-#         fixture: even_id_fixture
-#     expect:
-#       format: csv
-#       fixture: clean_table_fixture
-  
-#   - name: test_mixed_csv
-#     model: clean_table
-#     description: "file csv test"
-#     given:
-#       - input: ref('even_id_table')
-#         format: csv
-#         fixture: even_id_fixture
-#     expect:
-#       format: csv
-#       rows: |
-#         full_name,email,gender,ip_address
-#         First Last,email@me.com,F,5
+  # test all versions of a model
+  # - name: test_versioned_all
+  #   model: even_id_table
+  #   given: # optional: list of inputs to provide as fixtures
+  #     - input: source('my_source', 'raw_people_list')
+  #       format: csv
+  #       rows: |
+  #         id,email,gender
+  #         2,email@me.com,F
+  #   expect:
+  #     format: csv
+  #     rows: |
+  #         email,gender
+  #         email@me.com,F
+
+  - name: test_versioned_v2
+    model: even_id_table_v2
+      # versions:
+      #   include: 
+      #     - 2
+    given: # optional: list of inputs to provide as fixtures
+      - input: source('my_source', 'raw_people_list')
+        format: csv
+        rows: |
+          id,first_name,last_name,email,gender,ip_address
+          2,Amy,Smith,email@me.com,F,1234
+    expect:
+      format: csv
+      rows: |
+          id,first_name,last_name,email,gender
+          2,Amy,Smith,email@me.com,F
+
+  # - name: test_versioned_v1_and_v2
+  #   model: even_id_table
+  #     versions:
+  #       exclude: 
+  #         - 3
+  #   given: # optional: list of inputs to provide as fixtures
+  #     - input: source('my_source', 'raw_people_list')
+  #       format: csv
+  #       rows: |
+  #         id,first_name,last_name,email,gender
+  #         2,Amy,Smith,email@me.com,F
+  #   expect:
+  #     format: csv
+  #     rows: |
+  #         id,first_name,last_name,email,gender
+  #         2,Amy,Smith,email@me.com,F
+
+  # - name: test_male_list_view_versions_ref
+  #   model: male_list_view
+  #   given:
+  #     - input: ref('even_id_table', v=1)
+  #       format: csv
+  #       rows: |
+  #         id,first_name,last_name,email,gender,ip_address
+  #         2,Amy,Smith,email@me.com,F,1234
+  #         2,John,Smith,email@me.com,M,5678
+  #   expect:
+  #     format: csv
+  #     rows: |
+  #         id,first_name,last_name,email,gender,ip_address
+  #         2,John,Smith,email@me.com,M,5678

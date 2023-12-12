@@ -10,4 +10,4 @@ select first_name,
         email,
         gender,
         ip_address
-    from {{ref('even_id_table')}}
+    from {{ref('even_id_table', v="1")}}
