@@ -1,0 +1,6 @@
+sources:
+  - name: my_source
+    database: dbt
+    schema: dbt_testing
+    tables:
+      - name: raw_people_list
