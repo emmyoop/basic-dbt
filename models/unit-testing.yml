@@ -8,6 +8,4 @@ unit_tests:
         fixture: even_id_fixture
     expect:
       format: csv
-      rows: |
-        full_name,email,gender,ip_address
-        First Last,email@me.com,F,5
+      fixture: output_fixture
