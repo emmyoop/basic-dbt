@@ -1,0 +1,34 @@
+version: 2
+models:
+  - name: versioned_model
+    latest_verison: 1
+    config:
+      materialized: view
+      contract: 
+        enabled: true
+    constraints:
+      - type: check
+        columns: [id]
+        expression: (id > 0)
+    columns:
+      - name: id_view
+        quote: true
+        data_type: integer
+        description: hello
+        constraints:
+          - type: not_null
+          - type: primary_key
+        tests:
+          - unique
+      - name: color_view
+        data_type: text
+      - name: date_view
+        data_type: date
+    versions:
+      - v: 1
+      - v: 2
+        # add a column
+        columns:
+          - include: all
+          - name: is_active_view
+            data_type: boolean
