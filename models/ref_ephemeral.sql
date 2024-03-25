@@ -1,1 +1,1 @@
-select * from {{ref('ephemeral_model_ref_versioned')}}
+select * from {{ref('ephemeral_model', version=1)}}
