@@ -36,7 +36,6 @@ models:
   - name: ephemeral_model
     latest_verison: 1
     config:
-      materialized: ephemeral
       contract: 
         enabled: true
     columns:
